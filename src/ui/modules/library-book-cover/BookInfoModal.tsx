@@ -35,6 +35,7 @@ import {
   SelectBoxItem,
 } from '@/ui/common/common-components'
 import { useScreenMode, useStyle } from '@/ui/context/StyleContext'
+import { useStudentInfo } from '@/client/store/student/info/selector'
 
 const STYLE_ID = 'book_cover'
 
@@ -386,6 +387,10 @@ export function BookInfoModal({
   const isWorksheetYn = !!bookInfo.workSheetPath
   const isVocabularyYn = !!bookInfo.vocabularyPath
 
+  const student = useStudentInfo().payload
+  const endDateLimit = 0
+  const endMessage = '학습 기간이 종료되었습니다.'
+
   return (
     <Modal
       onClickDelete={() => {
@@ -476,11 +481,12 @@ export function BookInfoModal({
                   <div
                     className={style.download_voca}
                     onClick={() => {
+                      student.studyEndDay > endDateLimit ?
                       window.open(
                         bookInfo.vocabularyPath,
                         '_blank',
                         'noopener, noreferrer',
-                      )
+                      ) : alert(endMessage)
                     }}>
                     <span>단어장</span>
                     <Image
@@ -495,11 +501,12 @@ export function BookInfoModal({
                   <div
                     className={style.download_worksheet}
                     onClick={() => {
+                      student.studyEndDay > endDateLimit ? 
                       window.open(
                         bookInfo.workSheetPath,
                         '_blank',
                         'noopener, noreferrer',
-                      )
+                      ) : alert(endMessage)
                     }}>
                     <span>워크시트</span>
                     <Image
@@ -533,13 +540,23 @@ export function BookInfoModal({
                 </SelectBox>
               )}
             {!isButtonLayoutFullEasy ? (
-              <Button
-                width="100%"
-                shadow
-                color={'red'}
-                onClick={onClickStartStudy}>
-                학습하기
-              </Button>
+              <>
+                {student.studyEndDay > endDateLimit ? 
+                  <Button
+                    width="100%"
+                    shadow
+                    color={'red'}
+                    onClick={onClickStartStudy}>
+                    Start
+                  </Button> : <Button
+                    width="100%"
+                    shadow
+                    color={'red'}
+                    onClick={() => {alert(endMessage)}}>
+                    <Image alt='' src='/src/images/lock-icons/lock_white.svg' width={24} height={24} />
+                  </Button>
+                }
+              </>
             ) : (
               <div className={style.full_easy_container}>
                 <Button
@@ -632,7 +649,10 @@ export function BookInfoModal({
                     {bookInfo.speakContentYn && (
                       <div
                         className={style.speak_button}
-                        onClick={onClickStartSpeak}>
+                        onClick={() => {
+                          student.studyEndDay > endDateLimit ? onClickStartSpeak() : alert(endMessage)
+                        }
+                        }>
                         Speak{`${bookInfo.speakPassYn ? ' Pass' : ''}`}
                       </div>
                     )}

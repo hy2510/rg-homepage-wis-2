@@ -95,12 +95,12 @@ export default function LevelSelector({
           {isSelectableBookType && (
             <div style={{position: "sticky", top: 0, zIndex: 10}}>
               <TabNavBar
-                items={['eBook', 'pBookQuiz'].map((name) => {
+                items={['eBook', 'pBook Quiz'].map((name) => {
                   let active = false
                   if (bookType === 'EB') {
                     active = name === 'eBook'
                   } else {
-                    active = name === 'pBookQuiz'
+                    active = name === 'pBook Quiz'
                   }
                   return {
                     label: name,

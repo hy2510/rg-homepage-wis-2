@@ -150,6 +150,13 @@
         cursor: url(../../include/images/cursor_hover.png), pointer;
     }
 
+    @media (any-pointer:coarse) {
+        .quiz_box li:hover {
+            color: #fff;
+            cursor: url(../../include/images/cursor_hover.png), pointer;
+        }   
+    }
+
 .q_correct {
     animation: q_correct 2s forwards;
 }

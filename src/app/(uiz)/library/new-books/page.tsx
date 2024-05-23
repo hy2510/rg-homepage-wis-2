@@ -54,11 +54,11 @@ function NewBookLayout({ keyword }: { keyword: string }) {
   return (
     <main className={style.search_result}>
       <BackLink href={SITE_PATH.LIBRARY.HOME} largeFont>
-        New Books
+        {`${option.year}. ${option.month} New Books`}
       </BackLink>
-      <Dropdown title={`${option.year}. ${option.month}`}>
+      {/* <Dropdown title={`${option.year}. ${option.month}`}>
         <DropdownItem> {`${option.year}. ${option.month}`}</DropdownItem>
-      </Dropdown>
+      </Dropdown> */}
 
       {eBookCount > 0 && (
         <div className={style.row_a}>
@@ -66,8 +66,10 @@ function NewBookLayout({ keyword }: { keyword: string }) {
           <div className={style.book_list}>
             {newbook.EB.map((book, i) => {
               const isLabelRgPoint = false
-              const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
-              const bookCode = isLabelRgPoint ? undefined : book.levelName
+              // const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
+              // const bookCode = isLabelRgPoint ? undefined : book.levelName
+              const earnPoint = book.bookPoint
+              const bookCode = book.levelName
               return (
                 <BookCover
                   key={`book-cover-${i}-${book.surfaceImagePath}`}
@@ -101,8 +103,10 @@ function NewBookLayout({ keyword }: { keyword: string }) {
           <div className={style.book_list}>
             {newbook.PB.map((book, i) => {
               const isLabelRgPoint = false
-              const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
-              const bookCode = isLabelRgPoint ? undefined : book.levelName
+              // const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
+              // const bookCode = isLabelRgPoint ? undefined : book.levelName
+              const earnPoint = book.bookPoint
+              const bookCode = book.levelName
               return (
                 <BookCover
                   key={`book-cover-${i}-${book.surfaceImagePath}`}

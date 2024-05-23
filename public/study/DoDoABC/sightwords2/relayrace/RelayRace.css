@@ -223,6 +223,8 @@
     font-size: 2rem;
     color: #fff;
     background: url(./images/img_log_short.png);
+    background-repeat: no-repeat;
+    background-size: cover;
     cursor: url(../../include/images/cursor_hover.png), auto;
 }
 

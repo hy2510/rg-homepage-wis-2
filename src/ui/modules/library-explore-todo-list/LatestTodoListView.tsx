@@ -28,15 +28,17 @@ export default function LatestTodoListView({
     <>
       <ExpTodoList>
         {todoData.map((book, i) => {
-          const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
-          const bookCode = isLabelRgPoint ? undefined : book.levelName
+          // const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
+          // const bookCode = isLabelRgPoint ? undefined : book.levelName
+          const earnPoint = book.bookPoint
+          const bookCode = book.levelName
           return (
             <BookCover
               key={`book-cover-${i}-${book.surfaceImagePath}`}
               target={`todo`}
               bookImgSrc={book.surfaceImagePath}
               bookCode={bookCode}
-              earnPoint={earnPoint}
+              // earnPoint={earnPoint}
               title={book.title}
               author={book.author}
               isBookInfo={bookInfo && bookInfo.studyId === book.studyId}

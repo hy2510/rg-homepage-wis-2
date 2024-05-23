@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { ReactNode } from 'react'
 import { Button } from '@/ui/common/common-components'
 import { useScreenMode, useStyle } from '@/ui/context/StyleContext'
+import { useStudentInfo } from '@/client/store/student/info/selector'
 
 const STYLE_ID = 'course_list'
 
@@ -115,6 +116,10 @@ export function CourseItem({
 
   const isMobile = useScreenMode() === 'mobile'
 
+  const student = useStudentInfo().payload
+  const endDateLimit = 0
+  const endMessage = '학습 기간이 종료되었습니다.'
+
   return (
     <div className={style.course_item}>
       <div className={style.col_a}>
@@ -171,15 +176,33 @@ export function CourseItem({
             height={20}
           />
         </div>
-        <div
+        {student.studyEndDay > endDateLimit ?
+          <div
+            className={`${style.button} ${
+              previousItemPass && !itemPass ? style.start : style.start_ready
+            } ${itemPass && style.review}`}
+            onClick={() => {
+              onStartClick && onStartClick(bookCode)
+            }}>
+            {itemPass ? '다시 보기' : '시작'}
+          </div>
+          : <div
+              className={`${style.button} ${
+                previousItemPass && !itemPass ? style.start : style.start_ready
+              } ${itemPass && style.review}`}
+              onClick={() => {alert(endMessage)}}>
+              <Image alt='' src='/src/images/lock-icons/lock_white.svg' width={24} height={24} />
+            </div>
+        }
+        {/* <div
           className={`${style.button} ${
             previousItemPass && !itemPass ? style.start : style.start_ready
           } ${itemPass && style.review}`}
           onClick={() => {
             onStartClick && onStartClick(bookCode)
           }}>
-          {itemPass ? '복습' : '시작'}
-        </div>
+          {itemPass ? '다시 보기' : '시작'}
+        </div> */}
       </div>
     </div>
   )

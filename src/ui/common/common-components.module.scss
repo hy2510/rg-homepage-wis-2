@@ -399,7 +399,7 @@
       background-color: var(--red);
     }
     .tool_tip {
-      min-width: 80px;
+      min-width: 95px;
       position: absolute;
       top: calc(100% + 10px);
       // left: calc(100% - 40px);
@@ -434,6 +434,9 @@
   gap: var(--space-xxs);
   position: relative;
   // z-index: 4;
+  &.no_cursor {
+    cursor: default;
+  }
   .title {
     font-size: var(--text-d-1);
     font-weight: 600;

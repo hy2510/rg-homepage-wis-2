@@ -24,6 +24,13 @@
       font-weight: 500;
     }
   }
+  .link {
+    text-align: center;
+    margin-top: var(--space-l);
+    color: var(--blue);
+    font-weight: 500;
+    font-size: var(--text-l);
+  }
 }
 
 .log_in_box {

@@ -35,7 +35,7 @@ const hideControls = () => {
 
     timer = setTimeout(() => {
         container.classList.remove("show-controls");
-    }, 1000);
+    }, 3000);
 };
 hideControls();
 

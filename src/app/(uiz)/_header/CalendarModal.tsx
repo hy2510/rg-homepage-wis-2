@@ -499,7 +499,7 @@ const CalendarDetailModeBody = ({
             />
           )}
           <span>포인트</span>
-          {tabButtonStatus === 'point' && <span>{monthlyEarnPoint}P</span>}
+          {tabButtonStatus === 'point' && <span>{Number.isInteger(monthlyEarnPoint) ? monthlyEarnPoint : monthlyEarnPoint.toFixed(1)}P</span>}
         </div>
       </div>
       {/* 캘린더 */}

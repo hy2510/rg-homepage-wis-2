@@ -1,8 +1,8 @@
 // 영어독서왕 스코어보드
 .challenge_board {
-  margin-top: var(--space-m);
+  margin-top: 50px;
   .header {
-    height: 100px;
+    height: 70px;
     padding: var(--space-m) var(--space-xl);
     border-radius: 15px 15px 0 0;
     display: flex;
@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
+  position: relative;
   img {
     position: relative;
     z-index: 1;
@@ -63,12 +64,14 @@
     font-weight: 600;
   }
   .goal {
+    height: 100%;
     min-height: 250px;
     padding: var(--space-m);
     border-radius: var(--round-m);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: var(--space-s);
     position: relative;
     overflow: hidden;
@@ -84,6 +87,11 @@
         padding-left: var(--space-m);
         // color: #000;
       }
+    }
+    .goal_set_button {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
     }
     .goal_info {
       font-size: var(--text-s);
@@ -229,6 +237,7 @@
   position: relative;
   overflow: hidden;
   height: 100%;
+  min-height: 82px;
   @media (prefers-color-scheme: dark) {
     background-color: rgba($color: #ffffff, $alpha: 0.15);
   }

@@ -187,7 +187,7 @@ export default function Page() {
             }}
           />
           <div>
-            <TextField hint={'E-Mail(ID)'} value={userEmail} disabled />
+            <TextField hint={'ID(E-Mail)'} value={userEmail} disabled />
           </div>
           <EditChangePassword
             oldPassword={newPassword.oldValue}

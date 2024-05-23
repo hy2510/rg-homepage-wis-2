@@ -35,7 +35,7 @@
     .body {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-m);
+      gap: var(--space-s);
       margin-bottom: 15vh;
     }
   }
@@ -43,22 +43,24 @@
 
 // 단계선택 아이템
 .intro_choose_item {
-  cursor: pointer;
-  min-height: 300px;
-  border: 2px solid var(--gray2);
-  border-radius: var(--round-m);
-  padding: var(--space-m);
+  // cursor: pointer;
+  width: 100%;
+  min-height: 350px;
+  // border: 2px solid var(--gray2);
+  border-radius: var(--round-l);
+  padding: var(--space-s);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
+  // gap: var(--space-s);
+  // position: absolute;
   background-color: var(--white);
   z-index: 1;
   transition: bottom 0.5s, background-color 0.3s;
   bottom: 0;
   @media (prefers-color-scheme: dark) {
     background-color: #0c0541;
-    border: 2px solid rgba($color: #ffffff, $alpha: 0.15);
+    // border: 2px solid rgba($color: #ffffff, $alpha: 0.15);
   }
   &.active {
     bottom: 110px;
@@ -77,17 +79,27 @@
     gap: var(--space-xxs);
     .txt_l {
       font-size: var(--text-s);
-      color: var(--blue);
+      color: var(--white);
       font-weight: 500;
     }
     .txt_h {
       font-size: var(--text-d-1);
+      color: var(--white);
       font-weight: 600;
       margin-bottom: 10px;
     }
     .txt_p {
       font-size: var(--text-m);
-      color: var(--gray1);
+      color: rgba($color: #ffffff, $alpha: 0.5);
+    }
+  }
+  
+  .choose_box {
+    display: grid;
+    gap: var(--space-xs);
+    img {
+      border: 1px solid rgba($color: #ffffff, $alpha: 0.15);
+      border-radius: var(--round-m);
     }
   }
 

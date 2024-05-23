@@ -1,6 +1,6 @@
 // 영어독서왕 스코어보드
 .challenge_board {
-  margin-top: var(--space-m);
+  margin-top: var(--space-xxs);
   .header {
     height: 80px;
     padding: var(--space-s);
@@ -90,6 +90,11 @@
         padding-left: var(--space-xxs);
         // color: #000;
       }
+    }
+    .goal_set_button {
+      position: absolute;
+      right: 15px;
+      top: 15px;
     }
     .goal_info {
       font-size: var(--text-s);

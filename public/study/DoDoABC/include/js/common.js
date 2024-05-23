@@ -67,6 +67,7 @@ let wrapperScaleLandscapeToPortrait = screenWidth / 720; // onload 가로 -> 세
 let wrapperScalePortraitToLandscapeByTab = screenWidth / 1280; // onload 세로 -> 가로 - 태블릿
 let wrapperScaleLandscapeToPortraitByTab = screenHeight / 1280; // onload 가로 -> 세로 - 태블릿
 let targetLayout = ".wrapper-layout";
+let correctionItemLayout = ".gu-transit";
 
 // 화면 사이즈 조정 (학습 실행시)
 window.onload = () => {
@@ -75,8 +76,10 @@ window.onload = () => {
         if (md.tablet()) {
             if (isPortrait) {
                 document.querySelector(targetLayout).style.transform = `scale(${wrapperScalePortrait})`;
+                document.querySelector(correctionItemLayout).style.transform = `scale(${wrapperScalePortrait})`;
             } else {
                 document.querySelector(targetLayout).style.transform = `scale(${wrapperScalePortrait})`;
+                document.querySelector(correctionItemLayout).style.transform = `scale(${wrapperScalePortrait})`;
             }
         }
 
@@ -84,8 +87,10 @@ window.onload = () => {
         else {
             if (isPortrait) {
                 document.querySelector(targetLayout).style.transform = `scale(${wrapperScalePortrait})`;
+                document.querySelector(correctionItemLayout).style.transform = `scale(${wrapperScalePortrait})`;
             } else {
                 document.querySelector(targetLayout).style.transform = `scale(${wrapperScaleLandscape})`;
+                document.querySelector(correctionItemLayout).style.transform = `scale(${wrapperScaleLandscape})`;
             }
         }
     }
@@ -93,6 +98,7 @@ window.onload = () => {
     else {
         if (screenWidth < 1440) {
             document.querySelector(targetLayout).style.transform = `scale(${wrapperScalePortrait})`;
+            document.querySelector(correctionItemLayout).style.transform = `scale(${wrapperScalePortrait})`;
         } 
     }
 };

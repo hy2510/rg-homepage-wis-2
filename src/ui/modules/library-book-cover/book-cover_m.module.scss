@@ -8,7 +8,7 @@
   .container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-s);
+    gap: var(--space-xxs);
     position: relative;
     .study_status {
       position: absolute;
@@ -19,7 +19,9 @@
       gap: 3px;
       .assigned_todo,
       .passed_1,
-      .passed_all {
+      .passed_all,
+      .in_progress,
+      .home_work {
         width: 34px;
         height: 34px;
       }
@@ -76,9 +78,22 @@
         }
       }
       span {
-        padding: 4px 8px;
-        border: 1.5px dotted var(--gray2);
+        // padding: 4px 8px;
+        // border: 1.5px dotted var(--gray2);
         border-radius: var(--round-full);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .line {
+        width: 0;
+        height: 2px;
+      }
+      .point {
+        color: var(--black);
+        font-weight: 600;
+        font-size: 0.9em;
       }
     }
   }

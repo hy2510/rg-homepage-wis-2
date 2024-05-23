@@ -186,6 +186,7 @@ button {
   }
   &.compact {
     max-width: 1024px;
+    overflow-x: hidden;
   }
   &.pd-none {
     padding: 0;

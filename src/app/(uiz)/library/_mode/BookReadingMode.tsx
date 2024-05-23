@@ -28,6 +28,10 @@ import ThemeListView from '@/ui/modules/library-explore-theme-list/ThemeListView
 import LatestTodoListView from '@/ui/modules/library-explore-todo-list/LatestTodoListView'
 import { LibraryFilterOption } from '@/ui/modules/library-set-fliter/LibrarySearchFilter'
 import { SetStudyModeModal } from '../../_header/SetStudyMode'
+import { useReadingkingInfo } from '@/client/store/readingking/info/selector'
+import { useFetchReadingkingPrize } from '@/client/store/readingking/info/hook'
+import { ChallengeBoard } from '@/ui/modules/library-explore-challenge-board/ChallengeBoard'
+import { AlertBar } from '@/ui/common/common-components'
 
 const BookReadingMode = () => {
   const [viewLevelSelector, _viewLevelSelector] = useState(false)
@@ -64,25 +68,26 @@ const BookReadingMode = () => {
     fetch: updateBookTypeAndLevel,
     loading: isUpdateBookTypeAndLevelLoading,
   } = useFetchLibraryHomeChangeBookTypeAndLevel()
+  const { fetch: updateReadingKingPrize } = useFetchReadingkingPrize()
 
   let selectedNavBookType = 0
   const uiBookTypeList: string[] = []
   if (bookType === 'EB') {
     uiBookTypeList.push('eBook')
     if (level !== 'KA' && level !== 'KB') {
-      uiBookTypeList.push('pBookQuiz')
+      uiBookTypeList.push('pBook Quiz')
     }
   } else if (bookType === 'PB') {
     if (level !== '6C') {
       selectedNavBookType = 1
       uiBookTypeList.push('eBook')
     }
-    uiBookTypeList.push('pBookQuiz')
+    uiBookTypeList.push('pBook Quiz')
   }
   const onSelectNavBookType = (index: number, label: string) => {
     if (label === 'eBook') {
       updateBookType({ bookType: 'EB' })
-    } else if (label === 'pBookQuiz') {
+    } else if (label === 'pBook Quiz') {
       updateBookType({ bookType: 'PB' })
     }
   }
@@ -243,8 +248,48 @@ const BookReadingMode = () => {
 
   const [isShowStudyModal, setShowStudyModal] = useState(false)
 
+  const readingkingInfo = useReadingkingInfo().user.payload
+  const readingkingPrize = useReadingkingInfo().prizes.payload
+
+  const onPrizeChange = (prizeId: string) => {
+    updateReadingKingPrize({
+      eventId: readingkingInfo.eventId,
+      eventPrizeId: prizeId,
+    })
+  }
+
+  const eventSymbolImage = '/src/images/@challenge-board/challenge_symbol.png'
+  const eventDate = `${Number(readingkingInfo.startDate.substring(0, 4))}. ${Number(readingkingInfo.startDate.substring(4, 6))}. ${Number(readingkingInfo.endDate.substring(6, 8))} ~ ${Number(readingkingInfo.endDate.substring(0, 4))}. ${Number(readingkingInfo.endDate.substring(4, 6))}. ${Number(readingkingInfo.startDate.substring(6, 8))}`
+  
+  const libraryHome = useLibraryHome()
+  const mode = libraryHome.mode
+
   return (
     <>
+      {mode === 'challenge' && <>
+        <AlertBar>
+          {/* 영어독서왕에 도전해 보세요! 나의 목표를 설정하고 대회 기간 안에 목표를
+          달성하세요! (하루 최대 얻을 수 있는 포인트는 150P입니다.) */}
+          <span style={{color: '#ff2a2a'}}>영어독서왕 목표 달성을 위한 포인트와 학습일 수가 부족해요. 다음에 다시 도전해 주세요.</span>
+        </AlertBar>
+        <ChallengeBoard
+          challengeTitle={readingkingInfo.eventTitle}
+          symbolImgSrc={eventSymbolImage}
+          challengePeriod={eventDate}
+          prize={readingkingInfo.eventPrizeId}
+          prizeList={readingkingPrize}
+          targetDate={readingkingInfo.totalDays}
+          date={Math.min(
+            readingkingInfo.totalDays - readingkingInfo.remainingDays,
+            readingkingInfo.totalDays,
+          )}
+          targetDay={readingkingInfo.aimDays}
+          userDay={readingkingInfo.totalReadingDays}
+          targetPoint={readingkingInfo.aimPoint}
+          userPoint={readingkingInfo.totalPoint}
+          onPrizeChange={onPrizeChange}
+        />
+      </>} 
       {todos.count > 0 && <LatestTodoListView todos={todos} />}
       {viewLevelSelector && (
         <LevelSelector
@@ -288,6 +333,8 @@ const BookReadingMode = () => {
         totalCount={totalBookCount}
         filterOption={bookFilter}
         onChangeFilterOption={onFilterChanged}
+        isLabelRgPoint={true}
+        bookType={bookType}
       />
       <PaginationBar
         page={currentPage}
@@ -304,4 +351,5 @@ const BookReadingMode = () => {
     </>
   )
 }
+
 export default BookReadingMode

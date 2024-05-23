@@ -2,6 +2,7 @@
 
 import { ReactNode } from 'react'
 import { useStyle } from '@/ui/context/StyleContext'
+import Link from 'next/link'
 
 const STYLE_ID = 'page_sign_in'
 
@@ -15,6 +16,9 @@ export default function LoginForm({ children }: { children?: ReactNode }) {
         <div className={style.sentence}>읽는 즐거움, 커가는 영어실력</div>
       </div>
       <div className={style.log_in_box}>{children}</div>
+      <div className={style.link}>
+        <Link href="/account/account-list">계정 목록</Link>
+      </div>
     </main>
   )
 }

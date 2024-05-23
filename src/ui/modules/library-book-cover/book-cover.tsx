@@ -82,6 +82,11 @@ export function BookCover({
       )
   }
 
+  // 임시 (In Progress, H/W부여 과제, H/W 시작 일자)
+  const isInProgress = false;
+  const isHomeWork = false;
+  const startHomeWorkDate = null;
+
   return (
     <>
       <div className={style.book_cover}>
@@ -100,6 +105,26 @@ export function BookCover({
             {passedIcon && (
               <div className={passedClassName}>
                 <Image alt="" src={passedIcon} width={34} height={34} />
+              </div>
+            )}
+            {isInProgress && (
+              <div className={style.in_progress}>
+                <Image
+                  alt=""
+                  src="/src/images/@book-cover/in_progress.svg"
+                  width={34}
+                  height={34}
+                />
+              </div>
+            )}
+            {isHomeWork && (
+              <div className={style.home_work}>
+                <Image
+                  alt=""
+                  src="/src/images/@book-cover/home_work.svg"
+                  width={34}
+                  height={34}
+                />
               </div>
             )}
           </div>
@@ -157,19 +182,25 @@ export function BookCover({
           </div>
           {bookCode && (
             <div className={style.tag}>
-              <span>{bookCode}</span>
+              <span>{bookCode} {earnPoint && <div className={style.line}></div>}<span className={style.point}>{earnPoint}{earnPoint && 'P'}</span></span>
             </div>
           )}
-          {assignDate && (
+          {startHomeWorkDate ? (
+            <div className={style.tag}>
+              <span>({startHomeWorkDate})</span>
+            </div>
+          ) : (
+            assignDate && 
             <div className={style.tag}>
               <span>+{assignDate}</span>
             </div>
           )}
-          {earnPoint && (
+          
+          {/* {earnPoint && (
             <div className={`${style.tag} ${style.point}`}>
               <span>{earnPoint}P</span>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       {isBookInfo && (

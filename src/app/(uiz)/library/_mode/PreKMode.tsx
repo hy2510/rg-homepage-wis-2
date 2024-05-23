@@ -132,7 +132,7 @@ const PreKMode = () => {
         </Nav>
       )}
       <AlertBar>
-        영어 기초 다지기를 위한 코스! 통통 튀는 부분부터 학습을 시작하세요!
+        순서에 따라 영어의 기초를 즐겁게 배워보세요!
       </AlertBar>
       {/* 코스 아이템 */}
       <CoursePreKList passedNum={passedContents} totalNum={maxContents}>

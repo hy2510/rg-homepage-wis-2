@@ -1,7 +1,8 @@
 import './course-list.scss'
 import Image from 'next/image'
 import { ReactNode } from 'react'
-import { useStyle } from '@/ui/context/StyleContext'
+import { useScreenMode, useStyle } from '@/ui/context/StyleContext'
+import { useStudentInfo } from '@/client/store/student/info/selector'
 
 const STYLE_ID = 'course_list'
 
@@ -55,6 +56,12 @@ export function CourseItem({
 
   const itemPass = passCount > 0
 
+  const isMobile = useScreenMode() === 'mobile'
+
+  const student = useStudentInfo().payload
+  const endDateLimit = 0
+  const endMessage = '학습 기간이 종료되었습니다.'
+
   return (
     <div className={style.course_item}>
       <div className={style.col_a}>
@@ -82,7 +89,7 @@ export function CourseItem({
         </div>
         <div
           className={`${style.cover} ${
-            previousItemPass && !itemPass ? style.pulsate_fwd : ''
+            previousItemPass && !itemPass ? style.heartbeat : ''
           }`}>
           <Image
             alt=""
@@ -95,18 +102,36 @@ export function CourseItem({
             } ${itemPass && style.done}`}
           />
         </div>
-        <div className={style.txt_h}>{title}</div>
+        {isMobile ? <></> : <div className={style.txt_h}>{title}</div>}
       </div>
       <div className={style.col_b}>
-        <div
+        {student.studyEndDay > endDateLimit ?
+          <div
+            className={`${style.button} ${
+              previousItemPass && !itemPass ? style.start : style.start_ready
+            } ${itemPass && style.review}`}
+            onClick={() => {
+              onStartClick && onStartClick(levelRoundId)
+            }}>
+            {itemPass ? '다시 보기' : '시작'}
+          </div>
+          : <div
+              className={`${style.button} ${
+                previousItemPass && !itemPass ? style.start : style.start_ready
+              } ${itemPass && style.review}`}
+              onClick={() => {alert(endMessage)}}>
+              <Image alt='' src='/src/images/lock-icons/lock_white.svg' width={24} height={24} />
+            </div>
+        }
+        {/* <div
           className={`${style.button} ${
             previousItemPass && !itemPass ? style.start : style.start_ready
           } ${itemPass && style.review}`}
           onClick={() => {
             onStartClick && onStartClick(levelRoundId)
           }}>
-          {itemPass ? '복습' : '시작'}
-        </div>
+          {itemPass ? '다시 보기' : '시작'}
+        </div> */}
       </div>
     </div>
   )

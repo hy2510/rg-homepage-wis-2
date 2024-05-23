@@ -29,8 +29,12 @@ export default function Gfooter() {
           </div>
           <br />
           <div>
-            대표이사 김용환 ㅣ 사업자 등록 번호 119-86-01044 ㅣ FAX :
+            대표이사 김용환 ㅣ 사업자 등록 번호 119-86-01044 ㅣ 통신판매번호: 2013-경기성남-0836호 성남교육지원청 등록 제4868호 ㅣ FAX :
             070-0826-8660 ㅣ Mail : rgmanager@readinggate.com
+          </div>
+          <br />
+          <div>
+            
           </div>
         </div>
       </div>

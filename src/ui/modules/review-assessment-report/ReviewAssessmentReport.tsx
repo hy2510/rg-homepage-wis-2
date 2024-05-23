@@ -18,6 +18,7 @@ import {
 } from '@/client/store/library/favorites/selector'
 import { AlertBox, Button, Modal } from '@/ui/common/common-components'
 import { useScreenMode, useStyle } from '@/ui/context/StyleContext'
+import { useStudentInfo } from '@/client/store/student/info/selector'
 
 const STYLE_ID = 'review_assessment_report'
 
@@ -135,6 +136,10 @@ export const ReviewAssessmentReport = ({
   const isVocabularyYn = !!bookInfo.vocabularyPath
   const isReportYn = !!bookInfo.reportPath
 
+  const student = useStudentInfo().payload
+  const endDateLimit = 0
+  const endMessage = '학습 기간이 종료되었습니다.'
+
   return (
     <Modal
       onClickLightbox={() => {
@@ -195,7 +200,9 @@ export const ReviewAssessmentReport = ({
                   <div
                     className={style.download_voca}
                     onClick={() => {
+                      student.studyEndDay > endDateLimit ?
                       window?.open(bookInfo.vocabularyPath)
+                      : alert(endMessage)
                     }}>
                     <span>단어장</span>
                     <Image
@@ -210,7 +217,9 @@ export const ReviewAssessmentReport = ({
                   <div
                     className={style.download_worksheet}
                     onClick={() => {
+                      student.studyEndDay > endDateLimit ?
                       window?.open(bookInfo.workSheetPath)
+                      : alert(endMessage)
                     }}>
                     <span>워크시트</span>
                     <Image
@@ -234,14 +243,41 @@ export const ReviewAssessmentReport = ({
                   리포트 출력
                 </Button>
               )}
-              <Button
+              {
+                student.studyEndDay > endDateLimit ?
+                <Button
+                  width="100%"
+                  color={isPassed ? 'blue' : 'red'}
+                  onClick={() => {
+                    onStartStudy('study')
+                  }}>
+                  다시 보기
+                </Button>
+                : <Button
+                    width="100%"
+                    color={isPassed ? 'blue' : 'red'}
+                    onClick={() => {
+                      alert(endMessage)
+                    }}>
+                    <Image alt='' src="/src/images/lock-icons/lock_white.svg" width={24} height={24} />
+                  </Button>
+              }
+              {/* <Button
                 width="100%"
                 color={isPassed ? 'blue' : 'red'}
                 onClick={() => {
                   onStartStudy('study')
                 }}>
-                복습하기
+                다시 보기
               </Button>
+              <Button
+                width="100%"
+                color={isPassed ? 'blue' : 'red'}
+                onClick={() => {
+                  alert(endMessage)
+                }}>
+                <Image alt='' src="/src/images/lock-icons/lock_white.svg" width={24} height={24} />
+              </Button> */}
             </div>
           </div>
           <div className={style.light_box}></div>

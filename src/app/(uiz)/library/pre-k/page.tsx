@@ -179,8 +179,10 @@ function PreKLayout() {
         onExportClick={onExportClick}>
         {books.book.map((a, i) => {
           const isLabelRgPoint = false
-          const earnPoint = isLabelRgPoint ? a.bookPoint : undefined
-          const bookCode = isLabelRgPoint ? undefined : a.levelName
+          // const earnPoint = isLabelRgPoint ? a.bookPoint : undefined
+          // const bookCode = isLabelRgPoint ? undefined : a.levelName
+          const earnPoint = a.bookPoint
+          const bookCode = a.levelName
 
           const isExportChecked =
             isExportMode && selectedExportItem.has(a.levelRoundId)

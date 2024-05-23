@@ -271,8 +271,10 @@ function PBookLayout() {
         onExportClick={onExportClick}>
         {books.book.map((book, i) => {
           const isLabelRgPoint = false
-          const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
-          const bookCode = isLabelRgPoint ? undefined : book.levelName
+          // const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
+          // const bookCode = isLabelRgPoint ? undefined : book.levelName
+          const earnPoint = book.bookPoint
+          const bookCode = book.levelName
 
           const isExportChecked =
             isExportMode && selectedExportItem.has(book.levelRoundId)

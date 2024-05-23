@@ -352,7 +352,7 @@ function Step1SignupInputVN({
         리딩게이트 회원가입
       </BackLink>
       <AlertBar>
-        [가입특혜] 가입일로 부터 7일간 레벨 테스트를 제외한 모든 학습 무료사용!
+        [웰컴 혜택] 가입일로부터 7일간 레벨테스트를 제외한 모든 학습 무료 사용!
       </AlertBar>
       <div className={style.sign_up_form}>
         <div className={style.comment}>

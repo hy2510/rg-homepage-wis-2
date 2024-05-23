@@ -117,22 +117,23 @@ export function MyGoal({
           <Image alt="" src={trophyImgSrc} width={100} height={120} />
           <div className={style.goal_container}>
             <div className={style.goal_name}>{goalName}</div>
-            <button
-              onClick={() => {
-                _isSetMygoalActive(true)
-              }}>
-              <Image
-                alt=""
-                src="/src/images/pencil-icons/pencil_gray.svg"
-                width={20}
-                height={20}
-              />
-            </button>
           </div>
-          <ul className={style.goal_info}>
+          <button
+            className={style.goal_set_button}
+            onClick={() => {
+              _isSetMygoalActive(true)
+            }}>
+            <Image
+              alt=""
+              src="/src/images/pencil-icons/pencil_gray.svg"
+              width={20}
+              height={20}
+            />
+          </button>
+          {/* <ul className={style.goal_info}>
             <li>• 대회 기간 동안 학습일수 {goalDays}일 이상 참여</li>
             <li>• 포인트 {goalPoint}P 이상 획득</li>
-          </ul>
+          </ul> */}
           <section>
             <div className={`${style.air} ${style.air1}`}></div>
             <div className={`${style.air} ${style.air2}`}></div>
@@ -283,14 +284,12 @@ export function MyProgress({
   )
   return (
     <div className={style.my_progress}>
-      <div className={style.txt_h}>참여 현황</div>
+      <div className={style.txt_h}>
+        참여 현황
+        {/* <span style={{color: '#aaa', fontSize: '0.7em', marginLeft: '10px'}}>오늘 학습 안 했어요.</span> */}
+        <span style={{color: '#00a0fd', fontSize: '0.7em', marginLeft: '10px'}}>오늘 학습했어요!</span>
+      </div>
       <div className={style.progress_group}>
-        <ChallengeProgress
-          isDday
-          currentDday={targetDate - date}
-          recommendDailyPoints={Number(recommendDailyPoints.toFixed(2))}
-          progressWidth={(date / targetDate) * 100}
-        />
         <ChallengeProgress
           isStudyDay
           currentStudyDays={userDay}
@@ -302,6 +301,12 @@ export function MyProgress({
           currentEarnPoint={Number(userPoint.toFixed(2))}
           finalGoalPoint={targetPoint}
           progressWidth={(userPoint / targetPoint) * 100}
+        />
+        <ChallengeProgress
+          isDday
+          currentDday={targetDate - date}
+          recommendDailyPoints={Number(recommendDailyPoints.toFixed(2))}
+          progressWidth={(date / targetDate) * 100}
         />
       </div>
     </div>

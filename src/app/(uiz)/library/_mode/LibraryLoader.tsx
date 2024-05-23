@@ -63,12 +63,17 @@ export function LibraryLoader() {
     status,
   }
 
+  // if (level === 'PK') {
+  //   return <PreKLoading option={libraryOption} />
+  // } else {
+  //   if (mode === 'challenge') {
+  //     return <ChallengeLoading option={libraryOption} />
+  //   }
+  //   return <BookReadingLoading option={libraryOption} />
+  // }
   if (level === 'PK') {
     return <PreKLoading option={libraryOption} />
   } else {
-    if (mode === 'challenge') {
-      return <ChallengeLoading option={libraryOption} />
-    }
     return <BookReadingLoading option={libraryOption} />
   }
 }

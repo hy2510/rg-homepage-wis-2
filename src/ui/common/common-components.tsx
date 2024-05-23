@@ -355,7 +355,7 @@ export function Dropdown({
   return (
     <div className="flex">
       <div
-        className={style.dropdown}
+        className={`${style.dropdown} ${!children && style.no_cursor}`}
         onClick={() => {
           check ? _check(false) : _check(true)
         }}
@@ -363,10 +363,10 @@ export function Dropdown({
         <div className={`${style.title} ${fontSizeM && style.txt_h}`}>
           {title}
         </div>
-        <div className={style.chev_down}></div>
-        {check && <div className={style.menu}>{children}</div>}
+        {children && <div className={style.chev_down}></div>}
+        {children && check && <div className={style.menu}>{children}</div>}
       </div>
-      {check && (
+      {children && check && (
         <div
           className={style.transparent_box}
           onClick={() => {

@@ -15,6 +15,7 @@ export function StudyHomeBookList({
   books,
   isLabelRgPoint,
   filterOption,
+  bookType,
   onChangeFilterOption,
 }: {
   completeCount?: number
@@ -22,6 +23,7 @@ export function StudyHomeBookList({
   books: SearchLevelBookResponse
   isLabelRgPoint?: boolean
   filterOption: LibraryFilterOption[]
+  bookType?: string
   onChangeFilterOption?: (filterOption: LibraryFilterOption[]) => void
 }) {
   const studentHistoryAction = useStudentHistoryAction()
@@ -44,14 +46,16 @@ export function StudyHomeBookList({
         max={totalCount}
         title={'학습 도서 목록'}
         alertMessage={
-          '마음에 드는 책을 골라 읽고 학습해 보세요! (pBook은 퀴즈만 제공)'
+          bookType === 'EB' ? '마음에 드는 책을 골라 읽고 학습해 보세요!' : 'pBook은 퀴즈만 제공해요. 종이책을 먼저 읽고 학습하세요!'
         }
         filterOption={filterOption}
         onChangeFilterOption={onChangeFilterOption}
         bookCount={books.page.totalRecords}>
         {books.book.map((book, i) => {
-          const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
-          const bookCode = isLabelRgPoint ? undefined : book.levelName
+          // const earnPoint = isLabelRgPoint ? book.bookPoint : undefined
+          // const bookCode = isLabelRgPoint ? undefined : book.levelName
+          const earnPoint = book.bookPoint
+          const bookCode = book.levelName
           return (
             <BookCover
               key={`book-cover-${i}-${book.surfaceImagePath}`}

@@ -48,15 +48,21 @@
 
     .wrapper-ice-cream.ice1 {
         background: url(./images/img_ice_cream_01.png);
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .wrapper-ice-cream.ice2 {
         background: url(./images/img_ice_cream_02.png);
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
 
     .wrapper-ice-cream.ice3 {
         background: url(./images/img_ice_cream_03.png);
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
 
@@ -67,10 +73,14 @@
 
     .wrapper-ice-cream.ice5 {
         background: url(./images/img_ice_cream_05.png);
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .wrapper-ice-cream.ice6 {
         background: url(./images/img_ice_cream_06.png);
+        background-size: cover;
+        background-repeat: no-repeat;
     }
 
     .wrapper-ice-cream img {

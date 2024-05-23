@@ -144,7 +144,7 @@ export const BookSearchBar = ({
         }}>
         <input
           type="text"
-          placeholder="학습 도서 검색"
+          placeholder="도서 찾기"
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}
           style={{ width: 'calc(100% - 120px)' }}

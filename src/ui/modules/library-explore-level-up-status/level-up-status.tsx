@@ -32,7 +32,7 @@ export const LevelUpStatus = ({
           <SetStudyMode onClickStudyMode={onClickStudyMode} />
         </div>
       </div>
-      <ProgressBar width={progress} check="100%" toolTip="Level Up" />
+      <ProgressBar width={progress} check="100%" toolTip="Level Master" />
     </div>
   )
 }

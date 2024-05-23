@@ -58,12 +58,15 @@ export const QuickReportItem = ({
       </div>
       <div className={style.result}>
         {isPassed ? (
-          <div className={style.pass}>PASS</div>
+          <div className={style.pass}>+{earnPoints}P</div>
         ) : (
           <div className={style.fail}>FAIL</div>
         )}
       </div>
-      <div className={`${style.date} ${isPassed ? style.pass : style.fail}`}>
+      {/* <div className={`${style.date} ${isPassed ? style.pass : style.fail}`}>
+        {studyDate}
+      </div> */}
+      <div className={`${style.date}`}>
         {studyDate}
       </div>
       {children}

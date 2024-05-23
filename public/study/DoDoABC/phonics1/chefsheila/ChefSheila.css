@@ -97,18 +97,26 @@
 
 .stuff.stuff01 {
     background: url(./images/img_burger_01.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .stuff.stuff02 {
     background: url(./images/img_burger_02.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .stuff.stuff03 {
     background: url(./images/img_burger_03.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .stuff.stuff04 {
     background: url(./images/img_burger_04.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .stuff p {

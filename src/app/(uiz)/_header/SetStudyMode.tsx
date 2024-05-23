@@ -2,7 +2,7 @@
 
 import { useCustomerInfo } from '@/app/_context/CustomerContext'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLibraryHomeAction } from '@/client/store/library/home/selector'
 import { useFetchChangeStudySetting } from '@/client/store/student/info/hook'
 import {
@@ -25,7 +25,7 @@ export function SetStudyModeModal({
     <Modal
       compact
       header={true}
-      title={'학습 설정'}
+      title={'학습설정'}
       onClickDelete={() => {
         onCloseClick && onCloseClick()
       }}
@@ -78,6 +78,15 @@ export function SetStudyMode() {
     updateMode(viewMode)
   }
 
+  useEffect(() => {
+    updateUserConfig({
+      customerId,
+      studentId: student.studentId,
+      mode: viewMode,
+    })
+    updateMode(viewMode)
+  },[viewMode])
+
   const { fetch } = useFetchChangeStudySetting()
   const onChangeStudyOption = (
     type:
@@ -114,9 +123,9 @@ export function SetStudyMode() {
   return (
     <div className={style.set_study_mode}>
       <div className={style.row_a}>
-        <div className={style.txt_h}>화면 모드</div>
+        <div className={style.txt_h}>학습 메인</div>
         {/* 자유 모드, 코스 모드 */}
-        <div className={style.choose_study_mode}>
+        {/* <div className={style.choose_study_mode}>
           <ChooseStudyModeItem
             name="레벨업 모드"
             active={viewMode === 'level'}
@@ -133,13 +142,22 @@ export function SetStudyMode() {
               setViewMode('challenge')
             }}
           />
-        </div>
+        </div> */}
+        <SetStudyOptionItem
+          title="챌린지 참여 현황 보기"
+          discription="영어 독서왕 대회가 시작되면 챌린지 참여 현황이 활성화됩니다."
+          check={viewMode === 'challenge'}
+          onClick={() => {
+              viewMode === 'level' ? setViewMode('challenge') : setViewMode('level')
+            }
+          }
+        />
       </div>
       <div className={style.row_c}>
-        <div className={style.txt_h}>eBook 읽기</div>
+        <div className={style.txt_h}>eBook 스토리</div>
         <SetStudyOptionItem
           title="Listen & Repeat - Level K"
-          discription="eBook KA ~ KC 레벨의 읽기 단계에서 전체 내용을 2회 반복 청취하는 액티비티을 제공합니다."
+          discription="eBook 학습에서 스토리가 자동으로 2회 반복 재생 됩니다."
           check={isKListenAndRepeat}
           onClick={() =>
             onChangeStudyOption('EBKListenRepeat', !isKListenAndRepeat)
@@ -147,7 +165,7 @@ export function SetStudyMode() {
         />
         <SetStudyOptionItem
           title="Listen & Repeat - Level 1"
-          discription="eBook 1A ~ 1C 레벨의 읽기 단계에서 전체 내용을 2회 반복 청취하는 액티비티을 제공합니다."
+          discription="eBook 학습에서 스토리가 자동으로 2회 반복 재생 됩니다."
           check={is1ListenAndRepeat}
           onClick={() =>
             onChangeStudyOption('EB1ListenRepeat', !is1ListenAndRepeat)
@@ -155,24 +173,23 @@ export function SetStudyMode() {
         />
       </div>
       <div className={style.row_b}>
-        <div className={style.txt_h}>퀴즈 설정 (Level 2 이상)</div>
+        <div className={style.txt_h}>퀴즈 풀기</div>
         <SetStudyOptionItem
-          title="Vocabulary Hint / Skip"
-          discription="Vocabulary 퀴즈를 풀다가 막혔을 때 힌트를 보거나 다음 문제로 건너뛸 수
-          있습니다."
+          title="Vocabulary Skip, Hint"
+          discription="타이핑 방식의 Practice는 문제마다 건너뛸 수 있고, Test는 주어진 기회만큼 힌트가 제공됩니다."
           check={isVocaHint}
           onClick={() => onChangeStudyOption('ViewStep2Skip', !isVocaHint)}
         />
         <SetStudyOptionItem
           title="Summary Chance"
-          discription="Summary 퀴즈를 풀다가 막혔을 때 찬스를 써서 다음 문제로 건너뛸 수 있습니다."
+          discription="주어진 기회만큼 정답을 획득하고 다음 문제로 건너뛸 수 있습니다."
           check={isSummaryChance}
           onClick={() => onChangeStudyOption('ViewStep3Hint', !isSummaryChance)}
         />
       </div>
-      <Button shadow width={'100%'} onClick={onClickSaveMode}>
+      {/* <Button shadow width={'100%'} onClick={onClickSaveMode}>
         저장하기
-      </Button>
+      </Button> */}
     </div>
   )
 }
