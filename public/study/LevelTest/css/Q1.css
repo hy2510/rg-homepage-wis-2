@@ -3,11 +3,20 @@
 @import url("./fonts.css");
 
 html, body{width:100%;height:100%;}
-body{background:url(../img/h/bg_body.jpg) repeat-x;}
+/* body{background:url(../img/h/bg_body.jpg) repeat-x;} */
+body {
+    background-color: #D7F0FF;
+}
 #body{width:100%;height:100%;}
 #body>tr>td{width:100%;height:100%;text-align:center;vertical-align:middle;}
 
-#outline{width:1200px;height:800px;margin:0 auto;position:relative;}
+/* #outline{width:1200px;height:800px;margin:0 auto;position:relative;} */
+#outline {
+    width:1200px;
+    height:800px;
+    margin:0 auto;
+    position:relative;
+}
 
 #boxMain {width:1012px;height:770px;position:absolute;left:94px;top:31px;}
 #boxMain .bg .a{display:block;}

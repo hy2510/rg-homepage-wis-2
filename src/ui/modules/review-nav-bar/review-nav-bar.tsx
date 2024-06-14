@@ -18,7 +18,7 @@ export function ReviewNavBar() {
 
   return (
     <div className={style.review_nav_bar}>
-      <div className={style.txt_h}>학습 리포트</div>
+      <div className={style.txt_h}>학습 활동</div>
       <Nav>
         <Link href={SITE_PATH.REVIEW.SIMPLE}>
           <NavItem active={!connectDetailedView}>간편보기</NavItem>

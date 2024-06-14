@@ -149,11 +149,11 @@ function gfPop(el) {
         var pos_left = (dw - rw) / 2;
         var pos_top = (dh - rh) / 2;
 
-        if(el.hasClass('at')){
-            el.css({'left':pos_left+'px','top':'0px'});
-        }else{
-            el.css({'left':pos_left+'px','top':pos_top+'px'});
-        }        
+        // if(el.hasClass('at')){
+        //     el.css({'left':pos_left+'px','top':'0px'});
+        // }else{
+        //     el.css({'left':pos_left+'px','top':pos_top+'px'});
+        // }        
                
         el.fadeIn(500);
         $("#popBg").css("opacity", "0.7").fadeIn("normal"); 
@@ -441,7 +441,7 @@ function removeHtml(str) {
 }
 
 function fixStrData(str) {
-    var ret = str.replace(/¡¯/g, "'");
+    var ret = str.replace(/ï¿½ï¿½/g, "'");
     return ret;
 }
 

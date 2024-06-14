@@ -3,7 +3,7 @@
 @import url("./fonts.css");
 
 html, body{width:100%;height:100%;}
-body{background:#ffe460;}
+body{background:#D7F0FF;}
 #body{width:100%;height:100%;}
 #body>tr>td{width:100%;height:100%;text-align:center;vertical-align:middle;}
 
